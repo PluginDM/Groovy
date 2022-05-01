@@ -1,7 +1,25 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+
+
+    //SHOULD BE ADDED AS LAST HERE !!!!!!
+    id 'kotlin-kapt'
+
+
+    //id 'kotlin-android-extensions' //SUPERSEDED BY THE FOLLOWING !!!!!!:
+    /*
+    android {
+                .
+                .
+                .
+                buildFeatures {
+                    viewBinding true
+                }
+            }
+     */
+
+
 }
 
 android {
@@ -36,6 +54,9 @@ android {
     testOptions {
         animationsDisabled = true
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -56,17 +77,34 @@ dependencies {
     implementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
 
 
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
     testImplementation 'org.mockito:mockito-inline:2.21.0'
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.8'
 
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
-    androidTestImplementation 'androidx.test:runner:1.3.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    ////////////////////// DM ADDED /////////////
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0' //removed 1.3.0 above
+
+    testImplementation 'org.mockito:mockito-core:4.3.1'
+
+    
+    /////////////////////////////////////////////
+
+    //implementation 'org.codehaus.groovy:groovy-all:2.4.15'
+
+    //MAKES TESTING OF VIEWS EASIER - IN PARTICULAR; VALIDATION OF VIEWS
+    /*
     androidTestImplementation('com.schibsted.spain:barista:3.6.0') {
+        exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
+    }*/
+    androidTestImplementation('com.adevinta.android:barista:4.2.0') {
         exclude group: 'org.jetbrains.kotlin' // Only if you already use Kotlin in your project
     }
 }
