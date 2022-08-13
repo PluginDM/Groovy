@@ -21,7 +21,15 @@ class PlayListFragment : Fragment() {
 
     lateinit var viewModelFactory: PlaylistViewModelFactory
 
-    private val service = PlaylistService()
+                     //CREATE ANONYMOUS OBJECT FROM PlaylistAPI INTERFACE
+                     /*
+                         NOTE: IN REALITY - RETROFIT CREATES WOULD CREATE THIS OBJECT -
+                         - I.E. WE WOULDN'T PASS IN IN ...BUT WE JUST WANT THE ISOLATED
+                         UNIT TEST TO PASS.
+
+                         NOTE: WILL NEED TO BE REVISITED FOR THE ACCEPTANCE TESTS.
+                      */
+    private val service = PlaylistService(object: PlaylistAPI{})
 
     private val repository = PlaylistRepository(service)
 

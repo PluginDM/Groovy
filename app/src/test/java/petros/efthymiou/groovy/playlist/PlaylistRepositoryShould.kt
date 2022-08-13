@@ -9,6 +9,7 @@ import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 
 
@@ -30,7 +31,7 @@ class PlaylistRepositoryShould:BaseUnitTest()
     @Test
     fun getPlaylistFromService()
     {
-        runBlocking {
+        runBlockingTest {
 
             //THE SYSTEM UNDER TEST - SO WE REQUIRE IT BE THE REAL OBJECT
             val repository = PlaylistRepository(service)
@@ -42,7 +43,7 @@ class PlaylistRepositoryShould:BaseUnitTest()
     }
 
     @Test
-    fun emitPlaylistFromService() = runBlocking {
+    fun emitPlaylistFromService() = runBlockingTest {
 
         val repository = mockSuccessfulCase()
 
@@ -91,7 +92,7 @@ Actual   :Success(Mock for List, hashCode: 79165483)
 
 
     @Test
-    fun propagateErrors() = runBlocking    {
+    fun propagateErrors() = runBlockingTest    {
 
         whenever (service.fetchPlaylists()).thenReturn (
 

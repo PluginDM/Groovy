@@ -193,7 +193,7 @@ Actual   :Mock for List, hashCode: 196037184
     @Test
     fun emitErrorWhenReceiveError()
     {
-        runBlocking{
+        runBlockingTest{
             whenever(repository.getPlaylists()).
                    thenReturn(
 
@@ -229,7 +229,7 @@ Actual   :java.lang.RuntimeException: Something went wrong
         //public fun <T> flow(@BuilderInference block: suspend FlowCollector<T>.() -> Unit): Flow<T> = SafeFlow(block)
 
         //!!!! STIPULATE WHAT A CALL TO repository.getPlaylists() SHOULD FAKE
-        runBlocking {
+        runBlockingTest {
             val myFlow: Flow<Result<List<PlayList>>> = flow {
 
                 this.emit(expected)
